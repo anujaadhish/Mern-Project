@@ -18,12 +18,5 @@ price:{
 },
 image:{
     type:String,
-}
-
-})
-
-
-
-
-
+}})
 module.exports=mongoose.model("thehope",hopeSchema)

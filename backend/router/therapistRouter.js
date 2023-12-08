@@ -1,14 +1,11 @@
 const express = require("express");
-const hopeRouter = express.Router();
-const multer = require("multer");
-const mongoose = require("mongoose");
-const hope=require("../model/thehopeSchema")
+const therapistRouter = express.Router();
+const therapist=require("../model/therapistSchema")
 
 
 
 
-
-hopeRouter.get("/view-book", async (req, res) => {
+therapistRouter.get("/view-patient", async (req, res) => {
     try {
       const products = await hope.find();
       return res.status(201).json({
@@ -26,7 +23,7 @@ hopeRouter.get("/view-book", async (req, res) => {
 })
 
 
-hopeRouter.post("/add-books",async(req,res)=>{
+therapistRouter.post("/add-patient",async(req,res)=>{
     try {
         const Data = {   
             title: req.body.title,
@@ -59,8 +56,8 @@ hopeRouter.post("/add-books",async(req,res)=>{
       }
 })
 
-hopeRouter.delete("/delete-book/:id", (req, res) => {
-    hope
+therapistRouter.delete("/delete-patient/:id", (req, res) => {
+therapist
       .deleteOne({
         _id: req.params.id,
       })
@@ -72,11 +69,11 @@ hopeRouter.delete("/delete-book/:id", (req, res) => {
         console.log(error);
       });
   });
-  hopeRouter.put(
-    "/update-book/:id",
+  therapistRouter.put(
+    "/update-patient/:id",
     upload.single("image"),
     (req, res) => {
-    hope
+    therapist
         .findOne({
           _id: req.params.id,
         })
@@ -116,4 +113,4 @@ hopeRouter.delete("/delete-book/:id", (req, res) => {
   )
 
 
-module.exports=hopeRouter
+module.exports=therapistRouter

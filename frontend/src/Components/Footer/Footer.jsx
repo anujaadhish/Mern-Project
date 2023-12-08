@@ -114,10 +114,7 @@ const Footer = () => {
       {/* Section: Text */}
       <section className="mb-4">
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-          distinctio earum repellat quaerat voluptatibus placeat nam, commodi
-          optio pariatur est quia magnam eum harum corrupti dicta, aliquam sequi
-          voluptate quas.
+          the hope online platform for peopke dealing with mental illness
         </p>
       </section>
       {/* Section: Text */}
