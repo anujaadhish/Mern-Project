@@ -3,6 +3,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link } from "react-router-dom";
+
 
 const Header = () => {
   return (
@@ -26,6 +28,10 @@ const Header = () => {
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
+                        <Nav.Link Link as={Link} to="/register ">Register</Nav.Link>
+                        <Nav.Link Link as={Link} to="/login">Login</Nav.Link>
+
+
           </Nav>
         </Navbar.Collapse>
       </Container>
