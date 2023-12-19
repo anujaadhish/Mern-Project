@@ -11,7 +11,8 @@ const Header = () => {
     <div>
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">The Hope</Navbar.Brand>
+        <img src="/logo.png" width={"120px"} alt="" />
+        <Navbar.Brand href="#home"></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
