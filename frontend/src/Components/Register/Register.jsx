@@ -96,8 +96,7 @@ const Register = () => {
                   src="/register.jpg"
                   className="img-fluid"
                   alt=""
-                 
-                />
+                  />
                 
               </div>
             </div>

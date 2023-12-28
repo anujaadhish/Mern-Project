@@ -16,14 +16,9 @@ const Login = () => {
                 src="/loginn.jpg"
                 alt="login form"
                 className="img-fluid"
-                // style={{ borderRadius: "1rem 0 0 1rem" }}
+                
               />
-              {/* <img
-                src="/login.webp"
-                alt="login form"
-                className="img-fluid"
-                style={{ borderRadius: "1rem 0 0 1rem" }}
-              /> */}
+            
             </div>
             <div className="col-md-6 col-lg-7 d-flex align-items-center">
               <div className="card-body p-4 p-lg-5 text-black">
