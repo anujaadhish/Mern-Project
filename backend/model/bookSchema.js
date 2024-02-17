@@ -1,5 +1,5 @@
 const mongoose=require("mongoose")
-const hopeSchema=new mongoose.Schema({
+const bookSchema=new mongoose.Schema({
 title:{
     type:String,
    require:true,
@@ -13,10 +13,10 @@ about:{
     require:true,
 },
 price:{
-    type:Number,
+    type:String,
    require:true,
 },
 image:{
     type:String,
 }})
-module.exports=mongoose.model("thehope",hopeSchema)
+module.exports=mongoose.model("book",bookSchema)

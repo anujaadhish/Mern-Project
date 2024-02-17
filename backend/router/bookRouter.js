@@ -1,16 +1,35 @@
 const express = require("express");
-const hopeRouter = express.Router();
+const bookRouter = express.Router();
 const multer = require("multer");
 const mongoose = require("mongoose");
-const hope=require("../model/thehopeSchema")
+const book=require("../model/bookSchema")
+const loginDB=require("../model/loginSchema")
+const checkAuth = require("../middlewares/checkAuth");
 
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "../frontend/public/images/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
+  if (allowedFileTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+const upload = multer({ storage: storage, fileFilter });
 
 
-
-hopeRouter.get("/view-book", async (req, res) => {
+bookRouter.get("/view-books", async (req, res) => {
     try {
-      const products = await hope.find();
+      const products = await book.find();
       return res.status(201).json({
         success: true,
         error: false,
@@ -26,16 +45,19 @@ hopeRouter.get("/view-book", async (req, res) => {
 })
 
 
-hopeRouter.post("/add-books",async(req,res)=>{
+bookRouter.post("/add-book", upload.single('image'),async(req,res)=>{
     try {
         const Data = {   
             title: req.body.title,
             author: req.body.author,
             about: req.body.about,
             price: req.body.price,    
-          image: req.file ? req.file.path : null,
+          // image: req.file ? req.file.path : null,
+          image: req.file.filename,
+
         };
-        const result = await hope(Data).save();
+        console.log(Data);
+        const result = await book(Data).save();
         if (result) {
           return res.status(201).json({
             success: true,
@@ -59,8 +81,8 @@ hopeRouter.post("/add-books",async(req,res)=>{
       }
 })
 
-hopeRouter.delete("/delete-book/:id", (req, res) => {
-    hope
+bookRouter.delete("/delete-book/:id", (req, res) => {
+    book
       .deleteOne({
         _id: req.params.id,
       })
@@ -72,11 +94,11 @@ hopeRouter.delete("/delete-book/:id", (req, res) => {
         console.log(error);
       });
   });
-  hopeRouter.put(
+  bookRouter.put(
     "/update-book/:id",
     upload.single("image"),
     (req, res) => {
-    hope
+    book
         .findOne({
           _id: req.params.id,
         })
@@ -114,6 +136,43 @@ hopeRouter.delete("/delete-book/:id", (req, res) => {
         });
     }
   )
+  bookRouter.get("/profile", checkAuth, (req, res) => {
+    loginDB
+      .aggregate([
+        {
+          $lookup: {
+            from: "register_tbs",
+            localField: "_id",
+            foreignField: "login_id",
+            as: "results",
+          },
+        },
+        {
+          $unwind: "$results",
+        },
+        {
+          $match: {
+            _id: new mongoose.Types.ObjectId(req.userData.userId),
+          },
+        },
+        {
+          $group: {
+            _id: "$_id",
+            name: { $first: "$results.name" },
+            phone: { $first: "$results.phone" },
+            email: { $first: "$results.email" },
+            username: { $first: "$username" },
+            password: { $first: "$password" },
+          },
+        },
+      ])
+      .then((data) => {
+        return res.status(201).json({
+          success: true,
+          error: false,
+          data: data[0],
+        });
+      });
+  });
 
-
-module.exports=hopeRouter
+module.exports=bookRouter

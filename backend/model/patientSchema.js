@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 
-const therapistSchema=new mongoose.Schema({
+const patientSchema=new mongoose.Schema({
     name:{
      type:String,
      require:true,
@@ -10,32 +10,22 @@ const therapistSchema=new mongoose.Schema({
       type:String,
       require:true,
      },
-     qualification:{
+     mentalhealthstatus:{
       type:String,
       require:true,
      },
-     experience:{
+     prescriptions:{
         type:String,
         require:true,
     },
-    about: {
+    reference: {
         type:String,
         require:true,
      },
-     email:{type:String,
-     require:true
-   },
      image:{
         type:String
-     },
-     status:{
-      type:String,
-      require:true,
-      default:"pending"
-     }
-
-   })
+     }})
   
   
   
-  module.exports=mongoose.model("therapist",therapistSchema)
+  module.exports=mongoose.model("patient",patientSchema)

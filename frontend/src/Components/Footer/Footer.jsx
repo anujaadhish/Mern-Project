@@ -2,8 +2,10 @@ import React from 'react'
 
 const Footer = () => {
   return (
+    
     <div>
-
+<br />
+<br />
 <>
   {/* Footer */}
   <footer className="bg-body-tertiary text-center">
@@ -238,9 +240,9 @@ const Footer = () => {
       style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
     >
       © 2020 Copyright:
-      <a className="text-reset fw-bold" href="https://mdbootstrap.com/">
+      
         TheHope.com
-      </a>
+      
     </div>
   
   </footer>

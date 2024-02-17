@@ -1,16 +1,17 @@
 import React from 'react'
+import "./Home.css"
 const Home = () => {
   return (
     <div>
         <div style={{backgroundColor:"#00BBBB"}}>
 
 
-<img src="https://www.themoodspace.com/Assets/help-hand.svg" alt="" />
+<img src="https://www.themoodspace.com/Assets/help-hand.svg" className='anim' alt="" />
 <h1>
 
 </h1>
 </div>
-<div
+{/* <div
   id="carouselExampleCrossfade"
   className="carousel slide carousel-fade"
   data-mdb-ride="carousel"
@@ -79,7 +80,7 @@ const Home = () => {
     <span className="carousel-control-next-icon" aria-hidden="true" />
     <span className="visually-hidden">Next</span>
   </button>
-</div>
+</div> */}
 
 </div>
   )

@@ -5,13 +5,13 @@ const therapist=require("../model/therapistSchema")
 
 
 
-therapistRouter.get("/view-patient", async (req, res) => {
+therapistRouter.get("/view-depression", async (req, res) => {
     try {
-      const products = await hope.find();
+      const patient = await therapist.find();
       return res.status(201).json({
         success: true,
         error: false,
-        data: products,
+        data: patient,
       });
     } catch (error) {
       return res.status(400).json({
@@ -23,7 +23,7 @@ therapistRouter.get("/view-patient", async (req, res) => {
 })
 
 
-therapistRouter.post("/add-patient",async(req,res)=>{
+therapistRouter.post("/add-depression",async(req,res)=>{
     try {
         const Data = {   
             title: req.body.title,
@@ -32,7 +32,7 @@ therapistRouter.post("/add-patient",async(req,res)=>{
             price: req.body.price,    
           image: req.file ? req.file.path : null,
         };
-        const result = await hope(Data).save();
+        const result = await (Data).save();
         if (result) {
           return res.status(201).json({
             success: true,
@@ -56,7 +56,7 @@ therapistRouter.post("/add-patient",async(req,res)=>{
       }
 })
 
-therapistRouter.delete("/delete-patient/:id", (req, res) => {
+therapistRouter.delete("/delete-depression/:id", (req, res) => {
 therapist
       .deleteOne({
         _id: req.params.id,
@@ -70,7 +70,7 @@ therapist
       });
   });
   therapistRouter.put(
-    "/update-patient/:id",
+    "/update-depression/:id",
     upload.single("image"),
     (req, res) => {
     therapist
